@@ -7,6 +7,7 @@ import {
     caloriesInputMsg,
     saveMealMsg,
     deleteMealMsg,
+    editMealMsg,
  } from './Update';
 
 const {
@@ -46,6 +47,10 @@ function mealRow(dispatch, className, meal) {
             i({
                 className: 'ph1 fa fa-trash-o pointer',
                 onclick: () => dispatch(deleteMealMsg(meal.id)),
+            }),
+            i({
+                className: 'ph1 fa fa-pencil-square-o pointer',
+                onclick: () => dispatch(editMealMsg(meal.id)),
             }),
         ]),
     ]);
@@ -146,12 +151,12 @@ function formView(dispatch, model) {
     );
 }
 
-function view (dispatch, model) {
+function view(dispatch, model) {
     return div({ className: 'mw6 center' }, [
         h1({ className: 'f2 pv2 bb'}, 'Calorie Counter'),
         formView(dispatch, model),
         tableView(dispatch, model.meals),
-        pre(JSON.stringify(model, null, 2)),
+        // For debug pre(JSON.stringify(model, null, 2)),
     ]);
 }
 
